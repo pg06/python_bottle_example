@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Bottle-Python Test</title>
+    <link href="/static/css/main.css" rel="stylesheet" media="screen">
+</head>
+<style type="text/css">
+    
+</style>
+<body>
+    <div>
+        <h3>Rotas disponíveis: </h3>
+        <ul>
+            % for route in my_routes:
+                <li><a href="{{ route }}">{{ route }}</a></li>
+            % end
+        </ul>
+    </div>
+</body>
+</html>

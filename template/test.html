@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Highcharts JS Test</title>
+    <link href="/static/css/main.css" rel="stylesheet" media="screen">
+    <!-- Import JQuery -->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <!-- Import HighCharts library -->
+    <script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
+</head>
+<style type="text/css">
+.back-link {
+    text-decoration: none;
+}</style>
+<body>
+    <a class="back-link" href="/"><span>&#x25c1;</span>Voltar</a>
+    <div id="container"></div>
+</body>
+<script type="text/javascript" charset="utf-8">
+    $(function () {
+        var chartData = [];
+        var chartCategories = [];
+        % for c in charts['info']:
+            chartData.push({name:"{{c['name']}}",data:{{c['data']}}});
+        % end
+        % for c in charts['categories']:
+            chartCategories.push("{{c}}");
+        % end
+        $('#container').highcharts({
+            title: {
+                text: 'Temperatura Mensal M\xE9dia',
+                x: -20 //center
+            },
+            subtitle: {
+                text: 'Fonte: WorldClimate.com',
+                x: -20
+            },
+            xAxis: {
+                categories: chartCategories
+            },
+            yAxis: {
+                title: {
+                    text: 'Temperatura (\xB0C)'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            tooltip: {
+                valueSuffix: '\xB0C'
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0
+            },
+            series: chartData
+        });
+    });
+</script>
+</html>
